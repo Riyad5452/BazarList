@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Claim Form</title>
+    <link rel="icon" href="https://iconape.com/wp-content/png_logo_vector/apex-shoes-logo.png" sizes="48x48">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Niramit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 20px;
+            font-size: 12px;
+        }
+        .container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        td label {
+            width: 80px;
+          font-weight: bold; /* Make the label bold */
+          color: #333; /* Set the text color */
+          margin-right: 10px; /* Add some space between the label and input */
+          display: inline-block; /* Ensure the label and input are on the same line */
+          vertical-align: middle; /* Align label with input field vertically */
+        }
+
+
+        .form-control {
+            width: 50%;
+            padding: 5px;
+            font-size: 16px;
+            border: 2px solid transparent; /* Make the border transparent initially */
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 4px 10px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+            outline: none;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+            font-family: 'Times New Roman', Times, serif;
+            background-image: linear-gradient(to right, #f9f9f9, #f9f9f9), 
+                              linear-gradient(to right, #e74c3c, #8e44ad); /* Gradient border effect */
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+        
+        .form-control:focus {
+            background-image: linear-gradient(to right, #f9f9f9, #f9f9f9), 
+                              linear-gradient(to right, #2ecc71, #3498db); /* Gradient effect on focus */
+            box-shadow: inset 0px 4px 12px rgba(0, 0, 0, 0.15), 
+                        0px 6px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow on focus */
+        }
+        
+        .form-control:hover {
+            border-color: transparent; /* Keep the gradient border */
+            background-image: linear-gradient(to right, #f9f9f9, #f9f9f9), 
+                              linear-gradient(to right, #e74c3c, #f39c12); /* Change gradient on hover */
+            transform: scale(1.02); /* Slight zoom effect */
+        }
+
+    
+            
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        #nob td {
+            border: none;
+            }
+
+        #nobx td {
+            border: none;           /* সব বর্ডার সরানোর জন্য */
+            border-top: 1px solid black;  /* শুধুমাত্র উপরের বর্ডার রাখতে */
+        }
+        .dotdot {
+            border: none;
+            border-bottom: 1px dotted black;
+            width: 20ch; /* Width of approximately 40 characters */
+            display: inline-block; /* Ensure the element respects the width */
+        }
+
+
+        .report-title {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .signature-box {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .signature-box div {
+            width: 45%;
+            text-align: center;
+            border-top: 1px solid black;
+            padding-top: 5px;
+        }
+        .confirmation {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .artid {
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+        }
+
+
+        /* Button hover effects */
+.button {
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Icons for better visual appeal */
+.icon {
+    margin-right: 5px;
+}
+
+/* Change colors for each button */
+.button.is-primary.is-outlined {
+    border-color: #3273dc;
+    color: #3273dc;
+}
+
+.button.is-primary.is-outlined:hover {
+    background-color: #3273dc;
+    color: white;
+}
+
+.button.is-info.is-outlined {
+    border-color: #209cee;
+    color: #209cee;
+}
+
+.button.is-info.is-outlined:hover {
+    background-color: #209cee;
+    color: white;
+}
+
+.button.is-success {
+    background-color: #23d160;
+    color: white;
+}
+
+.button.is-success:hover {
+    background-color: #20bc56;
+}
+
+        
+        /* Style for print */
+        @media print {
+            body {
+                transform: scale(0.95); /* Scale the print layout */
+                transform-origin: top left; /* Scale from the top left corner */
+            }
+            .container {
+                border: none;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+       <form id="form" class="container m-4 pl-4" method="POST">
+<div class="container" id="firstPage">
+    <h2 class="card-header bg-success text-white" style="font-size: 27px; font-family: 'Cambria', serif;">নোঙর কিচেন</h2>
+    
+
+        <table>
+            <tr> 
+                <h1>Kaca Bazar</h1>
+                <td><label for='1_1'>আটা</label><input class="form-control" type="text" id="1_1" name="1_1"></td>
+                <td><label for='1_2'>আদা</label><input class="form-control" type="text" id="1_2" name="1_2"></td>
+                <td><label for='1_3'>আনারস</label><input class="form-control" type="text" id="1_3" name="1_3"></td>
+                <td><label for='1_4'>আম</label><input class="form-control" type="text" id="1_4" name="1_4"></td>
+            </tr><tr>
+                <td><label for='1_5'>আলু</label><input class="form-control" type="text" id="1_5" name="1_5"></td>
+                <td><label for='1_6'>কলা</label><input class="form-control" type="text" id="1_6" name="1_6"></td>
+                <td><label for='1_7'>কুমড়ো</label><input class="form-control" type="text" id="1_7" name="1_7"></td>
+                <td><label for='1_8'>ক্যাপসিকাম</label><input class="form-control" type="text" id="1_8" name="1_8"></td>
+            </tr><tr>
+                <td><label for='1_9'>গাজর</label><input class="form-control" type="text" id="1_9" name="1_9"></td>
+                <td><label for='1_10'>ঝিঙ্গা</label><input class="form-control" type="text" id="1_10" name="1_10"></td>
+                <td><label for='1_11'>টমেটো</label><input class="form-control" type="text" id="1_11" name="1_11"></td>
+                <td><label for='1_12'>পেঁপে</label><input class="form-control" type="text" id="1_12" name="1_12"></td>
+            </tr><tr>
+                <td><label for='1_13'>পেঁয়াজ</label><input class="form-control" type="text" id="1_13" name="1_13"></td>
+                <td><label for='1_14'>শসা</label><input class="form-control" type="text" id="1_14" name="1_14"></td>
+                <td><label for='1_15'>বাঁধাকপি</label><input class="form-control" type="text" id="1_15" name="1_15"></td>
+                <td><label for='1_16'>সালাত পাতা</label><input class="form-control" type="text" id="1_16" name="1_16"></td>
+            </tr><tr>
+                <td><label for='1_17'>ধনেপাতা</label><input class="form-control" type="text" id="1_17" name="1_17"></td>
+                <td><label for='1_18'>পুদিনা পাতা</label><input class="form-control" type="text" id="1_18" name="1_18"></td>
+                <td><label for='1_19'>লেবু</label><input class="form-control" type="text" id="1_19" name="1_19"></td>
+                <td><label for='1_20'>বড় বটি</label><input class="form-control" type="text" id="1_20" name="1_20"></td>
+            </tr>
+            </table>
+                <h1>Mudi Bazar</h1>
+    
+            <table>
+            <tr>
+                <td><label for='2_21'>খাসির মাংস</label><input class="form-control" type="text" id="2_21" name="2_21"></td>
+                <td><label for='2_22'>গরুর মাংস</label><input class="form-control" type="text" id="2_22" name="2_22"></td>
+                <td><label for='2_23'>চিংড়ি</label><input class="form-control" type="text" id="2_23" name="2_23"></td>
+                <td><label for='2_24'>বড় মুরগি</label><input class="form-control" type="text" id="2_24" name="2_24"></td>
+            </tr><tr>
+                <td><label for='2_25'>মাছ</label><input class="form-control" type="text" id="2_25" name="2_25"></td>
+                <td><label for='2_26'>মুরগি</label><input class="form-control" type="text" id="2_26" name="2_26"></td>
+                <td><label for='2_27'>ডিম</label><input class="form-control" type="text" id="2_27" name="2_27"></td>
+                
+                <td><label for='2_28'>কাশ্মীরি মরিচ</label><input class="form-control" type="text" id="2_28" name="2_28"></td>
+            </tr><tr>
+                <td><label for='2_29'>জিরা</label><input class="form-control" type="text" id="2_29" name="2_29"></td>
+                <td><label for='2_30'>গোলমরিচ</label><input class="form-control" type="text" id="2_30" name="2_30"></td>
+                <td><label for='2_31'>বিরিয়ানি মসলা</label><input class="form-control" type="text" id="2_31" name="2_31"></td>
+                <td><label for='2_32'>মরিচ গুঁড়ো</label><input class="form-control" type="text" id="2_32" name="2_32"></td>
+            </tr><tr>
+                <td><label for='2_33'>হলুদ গুঁড়ো</label><input class="form-control" type="text" id="2_33" name="2_33"></td>
+                <td><label for='2_34'>জিরা গুঁড়ো</label><input class="form-control" type="text" id="2_34" name="2_34"></td>
+                <td><label for='2_35'>ধনে গুঁড়ো</label><input class="form-control" type="text" id="2_35" name="2_35"></td>
+                <td><label for='2_36'>গরম মসলা গুঁড়ো</label><input class="form-control" type="text" id="2_36" name="2_36"></td>
+            </tr><tr>
+                <td><label for='2_37'>সরিষার তেল</label><input class="form-control" type="text" id="2_37" name="2_37"></td>
+                <td><label for='2_38'>সয়াসস</label><input class="form-control" type="text" id="2_38" name="2_38"></td>
+                <td><label for='2_39'>সয়াবিন তেল</label><input class="form-control" type="text" id="2_39" name="2_39"></td>
+                <td><label for='2_40'>ভিনেগার</label><input class="form-control" type="text" id="2_40" name="2_40"></td>
+            </tr><tr>
+                <td><label for='2_41'>টেস্টিং সল্ট</label><input class="form-control" type="text" id="2_41" name="2_41"></td>
+                
+                <td><label for='2_42'>চাল</label><input class="form-control" type="text" id="2_42" name="2_42"></td>
+                <td><label for='2_43'>পোলাও চাল</label><input class="form-control" type="text" id="2_43" name="2_43"></td>
+                <td><label for='2_44'>মসুর ডাল</label><input class="form-control" type="text" id="2_44" name="2_44"></td>
+            </tr><tr>
+                <td><label for='2_45'>মুগ ডাল</label><input class="form-control" type="text" id="2_45" name="2_45"></td>
+                <td><label for='2_46'>ডাল</label><input class="form-control" type="text" id="2_46" name="2_46"></td>
+                <td><label for='2_47'>নুডলস</label><input class="form-control" type="text" id="2_47" name="2_47"></td>
+                
+                <td><label for='2_48'>ঘি</label><input class="form-control" type="text" id="2_48" name="2_48"></td>
+            </tr><tr>
+                <td><label for='2_49'>দুধ</label><input class="form-control" type="text" id="2_49" name="2_49"></td>
+                <td><label for='2_50'>পাউরুটি</label><input class="form-control" type="text" id="2_50" name="2_50"></td>
+                <td><label for='2_51'>ইস্ট পাউডার</label><input class="form-control" type="text" id="2_51" name="2_51"></td>
+                <td><label for='2_52'>ময়দা</label><input class="form-control" type="text" id="2_52" name="2_52"></td>
+            </tr><tr>
+                <td><label for='2_53'>বেকিং পাউডার</label><input class="form-control" type="text" id="2_53" name="2_53"></td>
+                
+                <td><label for='2_54'>চিনি</label><input class="form-control" type="text" id="2_54" name="2_54"></td>
+                <td><label for='2_55'>গোলাপ জল</label><input class="form-control" type="text" id="2_55" name="2_55"></td>
+                <td><label for='2_56'>কেওড়া জল</label><input class="form-control" type="text" id="2_56" name="2_56"></td>
+            </tr><tr>
+                <td><label for='2_57'>রসুন</label><input class="form-control" type="text" id="2_57" name="2_57"></td>
+            </tr>
+        </table>
+            <h1>Other's</h1>
+
+        <table>
+            <tr>
+                <td><label for='3_58'>কফি</label><input class="form-control" type="text" id="3_58" name="3_58"></td>
+                <td><label for='3_59'>ফয়েল পেপার</label><input class="form-control" type="text" id="3_59" name="3_59"></td>
+                <td><label for='3_60'>ফ্রেঞ্চ ফ্রাই</label><input class="form-control" type="text" id="3_60" name="3_60"></td>
+                <td><label for='3_61'>বড় বটি</label><input class="form-control" type="text" id="3_61" name="3_61"></td>
+                <td><label for='3_62'>বার্লি/রারুট পাউডার</label><input class="form-control" type="text" id="3_62" name="3_62"></td>
+            </tr>
+        </table>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <div class="button is-primary" onclick="submitData()">Preview Data</div>
+            </div>
+        </div>
+    
+</div>
+
+<!-- ================================================================================================================== -->
+
+    
+<div class="container" id="secondPage" style="display: none;">
+    <h1 class="card-header" style="font-size: 27px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+          <!-- <img src="https://i.ibb.co/n6mQCYg/Nongor-removebg-preview.png" style="height: 50px"/> -->
+        </div>
+        <div style="flex: 0 1 auto; text-align: center; font-size: 20px; text-transform: uppercase; font-weight: bold; color: #172774;">Settlement of Customer's Claim</div>
+        <div id="usernameContainer" style="flex: 1; display: flex; justify-content: flex-end; font-size: 15px;">
+          <img src="https://iconape.com/wp-content/png_logo_vector/apex-shoes-logo.png" alt="Stamp" style="height: 40px;"/>
+        </div>
+      </h1>
+        
+        <!-- <h1 style="text-align: center; font-weight: bold; font-size: 20px;">Settlement of Customer's Claim</h1> -->
+            <div class="header-section">
+            <div><br>Store: <span style="width: 25ch; border: none; border-bottom: 1px dotted black;" id="displayStore"></span></div>
+            <div>Month: <span class="dotdot" id="displayMonth"></span><br> Date: <span class="dotdot" id="displayDate"></span></div>
+        
+        </div>
+
+        <table id="claimTable">
+            <tr>
+                <td width="30%">Article No. <span class="artid" id="displayArticleNo"></span></td>
+                <td width="10%" style="text-align: center">Size</td>
+                <td width="10%" style="text-align: center"><span class="artid" id="displaySize"></span></td>
+                <td width="30%">Amount Paid <span class="artid" id="displayAmountPaid"></span></td>
+                <td width="20%">Date of Purchase <span class="artid" id="displaydateOfPurchase"></span></td>
+            </tr>
+            <tr id="nob">
+                <td width="50%" colspan="3">From where Purchased &nbsp;&nbsp;<span class="artid" id="displayPurchaseStore"></span></td>
+                <td width="30%">Date of Complain <span class="artid" id="displayDateOfComplain"></span></td>
+                <td width="20%">Period of Wear <span class="artid" id="displayperiodOfWear"></span></td>
+            </tr>
+            <tr>
+                <td colspan="5">Nature of Complain: &nbsp;&nbsp;<span class="artid" id="natureOfComplain"></span></td>
+            </tr>
+            <tr id="nob">
+                <td colspan="3">Name of Customer: &nbsp;&nbsp;<span class="artid" id="displayCustomerName"></span></td>
+                <td colspan="2">Address: &nbsp;&nbsp;<span class="artid" id="displayCustomerAddress"></span></td>
+            </tr>
+            <tr id="nob">
+                <td colspan="5" style="text-align: center; font-weight: bold; font-size: 20px;">REPORT OF SHOP MANAGER</td>
+            </tr>
+            <tr id="nob">
+                <td colspan="5">1. State clearly detect or damage as you see it</td>
+            </tr>
+            
+            <tr class="claim-details" id="nob">
+                <td colspan="4">&nbsp;&nbsp;&nbsp;(a) Upper Material:&nbsp;&nbsp;<span class="artid" id="displayupper"></span></td>
+                <td>Signature of Store Manager</td>
+            </tr>
+            <tr class="claim-details">
+                <td colspan="5">&nbsp;&nbsp;&nbsp;(b) Sole Materials:&nbsp;&nbsp;<span class="artid" id="displaysole"></span></td>
+            </tr>
+            <tr class="claim-details">
+                <td colspan="5">&nbsp;&nbsp;&nbsp;(c) Other Components:&nbsp;&nbsp;<span class="artid" id="displayothers"></span></td>
+            </tr>
+            <tr class="claim-details" id="nobx">
+                <td colspan="4">&nbsp;&nbsp;&nbsp;(d) Workmanship:&nbsp;&nbsp;<span class="artid" id="displaywork"></span></td>
+                <td>Authorised by</td>
+            </tr>
+            <tr>
+                <td colspan="5">2. Settlement Proposed by Store Manager:&nbsp;&nbsp;<span class="artid" id="displaySettlement"></span></td>
+            </tr>
+            <tr>
+                <td colspan="5">&nbsp;&nbsp;<span class="artid"></span></td>
+            </tr>
+            <tr>
+                <td colspan="5">&nbsp;&nbsp;<span class="artid"></span></td>
+                
+            </tr>
+            <tr id="nob">
+                <td width="30%">(a) Amount of Claim Shoes &nbsp;&nbsp;<span class="artid" id="displayAmt"></span></td>
+                <td>%</td>
+                <td><span class="artid" id="displayPer"></span></td>
+                <td id="artidtk" colspan="2">Tk &nbsp;&nbsp;<span class="dotdot" id="displayAmtTK"></span></td>
+            </tr>
+            <tr id="nob">
+                <td colspan="3"></td>
+                <td id="artidtk" colspan="2">Tk ..........................................<span class="artid"></span></td>
+            </tr>
+            <tr id="nob">
+                <td colspan="3"></td>
+                <td id="artidtk">Tk ..........................................<span class="artid"></span></td>
+                <td>Authorised by</td>
+            </tr>
+            <tr id="nobx">
+                <td colspan="5" style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 20px;">CONFIRMATION OF SETTLEMENT CLAIM BY CUSTOMER</td>
+            </tr>
+            <tr id="nob">
+                <td colspan="3">I hereby confirm having received:</td>
+                <td colspan="2" style="text-align: right;">I am very satisfied with the settlement:</td>
+            </tr>
+            <tr id="nobx">
+                <td colspan="4"></td>
+                <td style="text-align: center;">Signature of Customer</td>
+            </tr>
+        </table>
+        <div class="field is-grouped no-print">
+            <div class="control">
+                <!-- Edit Button -->
+                <button class="button is-primary is-rounded is-outlined" onclick="goBack()">
+                    <span class="icon"><i class="fas fa-edit"></i></span>
+                    <span>Edit Data</span>
+                </button>
+        
+                <!-- Print / Save as PDF Button -->
+                <button class="button is-info is-rounded is-outlined" onclick="addNewData()">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Print / Save as PDF</span>
+                </button>
+        
+                <!-- Submit Button -->
+                <button class="button is-success is-rounded" type="submit" id="submit-button">
+                    <span class="icon"><i class="fas fa-paper-plane"></i></span>
+                    <span>Submit</span>
+                </button>
+            </div>
+        </div>
+
+    </form>
+    
+    <div id="message" style="display: none; margin: 20px; font-weight: bold; color: green; padding: 8px; background-color: beige; border-radius: 4px; border-color: aquamarine;"></div>
+
+<script>
+document.getElementById("form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        document.getElementById("message").textContent = "Submitting..";
+        document.getElementById("message").style.display = "block";
+        document.getElementById("submit-button").disabled = true;
+
+        // Collect the form data
+        var formData = new FormData(this);
+        var keyValuePairs = [];
+        for (var pair of formData.entries()) {
+          keyValuePairs.push(pair[0] + "=" + pair[1]);
+        }
+
+        var formDataString = keyValuePairs.join("&");
+
+        // Send a POST request to your Google Apps Script
+        fetch(
+          "https://script.google.com/macros/s/AKfycbz5BoxhZ7t7oPH-H8E61SNHxQF0qAiBh3vpkfu0BDOXrRt7lNxPuuo3La1nNdyNlAJG/exec",
+          {
+            redirect: "follow",
+            method: "POST",
+            body: formDataString,
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+          }
+        )
+          .then(function (response) {
+            // Check if the request was successful
+            if (response) {
+              return response; // Assuming your script returns JSON response
+            } else {
+              throw new Error("Failed to submit the form.");
+            }
+          })
+          .then(function (data) {
+            // Display a success message
+            document.getElementById("message").textContent =
+              "Data submitted successfully!";
+            document.getElementById("message").style.display = "block";
+            document.getElementById("message").style.backgroundColor = "green";
+            document.getElementById("message").style.color = "beige";
+            document.getElementById("submit-button").disabled = false;
+            document.getElementById("form").reset();
+
+            setTimeout(function () {
+              document.getElementById("message").textContent = "";
+              document.getElementById("message").style.display = "none";
+            }, 2600);
+          })
+          .catch(function (error) {
+            // Handle errors, you can display an error message here
+            console.error(error);
+            document.getElementById("message").textContent =
+              "An error occurred while submitting the form.";
+            document.getElementById("message").style.display = "block";
+          });
+      });
+
+</script>
+<script>
+        
+    function submitData() {
+        // Collect input data
+        document.getElementById('displayStore').innerText = document.getElementById('store').value;
+        document.getElementById('displayMonth').innerText = document.getElementById('month').value;
+        document.getElementById('displayDate').innerText = document.getElementById('date').value;
+        document.getElementById('displayArticleNo').innerText = document.getElementById('articleNo').value;
+        document.getElementById('displaySize').innerText = document.getElementById('size').value;
+        document.getElementById('displayAmountPaid').innerText = document.getElementById('amountPaid').value;
+        document.getElementById('displaydateOfPurchase').innerText = document.getElementById('dateOfPurchase').value;
+        document.getElementById('displayPurchaseStore').innerText = document.getElementById('purchaseStore').value;
+        document.getElementById('displayDateOfComplain').innerText = document.getElementById('dateOfComplain').value;
+        document.getElementById('displayperiodOfWear').innerText = document.getElementById('periodOfWear').value;
+        document.getElementById('displayCustomerName').innerText = document.getElementById('customerName').value;
+        document.getElementById('displayCustomerAddress').innerText = document.getElementById('customerAddress').value;
+        document.getElementById('displaySettlement').innerText = document.getElementById('settlement').value;
+        document.getElementById('displayupper').innerText = document.getElementById('upperMaterial').value;
+        document.getElementById('displaysole').innerText = document.getElementById('soleMaterial').value;
+        document.getElementById('displayothers').innerText = document.getElementById('otherComponents').value;
+        document.getElementById('displaywork').innerText = document.getElementById('workmanship').value;
+        document.getElementById('displayAmt').innerText = document.getElementById('AmtShoes').value;
+        document.getElementById('displayPer').innerText = document.getElementById('Amtper').value;
+        document.getElementById('displayAmtTK').innerText = document.getElementById('amtTK').value;
+
+    
+        // Show the print page
+        document.getElementById('firstPage').style.display = 'none';
+        document.getElementById('secondPage').style.display = 'block';
+    }
+
+    function goBack() {
+        // Go back to the input page
+        document.getElementById('firstPage').style.display = 'block';
+        document.getElementById('secondPage').style.display = 'none';
+    }
+</script>
+    <script>
+    /**  ******* Date *********** **/
+      var minDate, maxDate, maxxDate, maxyDate;
+        
+    function cdate() {
+        minDate = new DateTime($('#date'), {
+                format: 'DD-MMM-YY' //'MMMM Do YYYY'
+            });
+        maxDate = new DateTime($('#month'), {
+                format: 'MMMM-YY'
+            });
+        maxxDate = new DateTime($('#dateOfPurchase'), {
+                format: 'DD-MMM-YY'
+            });
+        maxyDate = new DateTime($('#dateOfComplain'), {
+                format: 'DD-MMM-YY'
+            });
+        }
+
+        function addNewData() {
+            // Clone the existing content
+            const container = document.getElementById('secondPage');
+            const newContent = container.cloneNode(true);
+            
+            // Clear the contents of the cloned content for new data input
+            // const inputsToClear = newContent.querySelectorAll('.artid');
+            // inputsToClear.forEach(input => {
+            //     input.textContent = ''; // Clear text content for new input
+            // });
+
+            // Append the cloned content to the container
+            container.appendChild(newContent);
+            
+            window.print();
+        }
+        
+</script>
+<!-- Include jQuery CDN in the head section -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+
+
+
+</body>
+</html>
+
